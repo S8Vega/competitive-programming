@@ -3,6 +3,7 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> pii;
+#define forn(i, a, b) for (int i = a; i < b; ++i)
 #define SZ(x) int(x.size())
 #define pb push_back
 #define F first
@@ -15,11 +16,28 @@ void dbg_out(Head H, Tail... T) {
   dbg_out(T...);
 }
 
-void solve() {}
+const int N = 110;
+int n, a[N];
+
+void solve() {
+  cin >> n;
+  forn(i, 0, n) cin >> a[i];
+  int ans = 0;
+  a[n] = 1e5;
+  forn(i, 0, n - 1) {
+    int j = n;
+    for (int jj = i; jj < n; jj++) {
+      if (a[jj] < a[j]) j = jj;
+    }
+    ans += j - i + 1;
+    reverse(a + i, a + j + 1);
+  }
+  cout << ans << endl;
+}
 
 int main() {
 #ifdef LOCAL
-  freopen("main.txt", "r", stdin);
+  freopen("a.txt", "r", stdin);
 // freopen("main.txt", "w", stdout);
 #else
   ios::sync_with_stdio(0);
@@ -29,11 +47,12 @@ int main() {
 #endif
   int t;
   cin >> t;
-  while (t--) {
+  forn(i, 1, t + 1) {
+    cout << "Case #" << i << ": ";
     solve();
   }
   return 0;
 }
 /*
-g++ -pthread -Wall -Wshadow -std=c++17 -o main main.cpp -DLOCAL && ./main
+g++ -pthread -Wall -Wshadow -std=c++17 -o main a.cpp -DLOCAL && ./main
 */
