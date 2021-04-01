@@ -1,2 +1,5 @@
 problems/**/*.txt
 problems/**/main
+problems/**/.cph/
+algorithms/test.*
+algorithms/main
