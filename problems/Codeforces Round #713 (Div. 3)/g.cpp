@@ -7,6 +7,7 @@ typedef pair<int, int> pii;
 #define pb push_back
 #define F first
 #define S second
+#define endl '\n'
 #define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
 void dbg_out() { cerr << endl; }
 template <typename Head, typename... Tail>
@@ -32,6 +33,7 @@ void init() {
 void solve() {
   int n;
   cin >> n;
+  dbg(n, ans[n]);
   if (ans[n])
     cout << ans[n] << endl;
   else
@@ -39,15 +41,8 @@ void solve() {
 }
 
 int main() {
-#ifdef LOCAL
-  freopen("g.txt", "r", stdin);
-// freopen("main.txt", "w", stdout);
-#else
   ios::sync_with_stdio(0);
   cin.tie(0);
-#define endl '\n'
-#define dbg(...) 18
-#endif
   init();
   int t;
   cin >> t;
