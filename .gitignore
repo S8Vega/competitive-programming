@@ -3,4 +3,4 @@ problems/**/main
 problems/**/.cph/
 algorithms/test.*
 algorithms/main
-.vscode
+.vscode/
