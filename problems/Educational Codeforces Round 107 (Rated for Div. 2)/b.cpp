@@ -16,7 +16,21 @@ void dbg_out(Head H, Tail... T) {
   dbg_out(T...);
 }
 
-void solve() {}
+int a, b, c;
+string x, y;
+
+void solve() {
+  cin >> a >> b >> c;
+  x = y = "1";
+  for (int i = 1; i < a; i++) x += "0";
+  for (int i = 1; i < b; i++) y += "0";
+  if (a < b) {
+    x[a - c] = '1';
+  } else {
+    y[b - c] = '1';
+  }
+  cout << x << ' ' << y << endl;
+}
 
 int main() {
   ios::sync_with_stdio(0);
@@ -28,13 +42,3 @@ int main() {
   }
   return 0;
 }
-/*
-g++ -pthread -Wall -Wshadow -std=c++17 -o main main.cpp && ./main < main.txt
-freopen("input.in", "r" , stdin);
-freopen("output.out", "w", stdout);
-
-g++ -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra
--D_GLIBCXX_DEBUG -o main main.cpp && for x in main*.txt; do echo
-====================$x=================; time -p ./main <$x; echo
-===========================================; done
-*/

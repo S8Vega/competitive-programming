@@ -16,16 +16,46 @@ void dbg_out(Head H, Tail... T) {
   dbg_out(T...);
 }
 
-void solve() {}
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+
+typedef tree<int, null_type, less<int>, rb_tree_tag,
+             tree_order_statistics_node_update>
+    ordered_set;
+
+const int N = 3e5 + 10;
+int n, qq;
+
+void solve() {
+  cin >> n >> qq;
+  priority_queue<int, vector<int>, greater<int> > qu[55];
+  vector<int> v(n), index(n);
+  ordered_set oset;
+  for (int i = 0; i < n; i++) {
+    cin >> v[i];
+    qu[v[i]].push(i);
+    oset.insert(i);
+  }
+  int q, id = -1;
+  vector<int> ans;
+  while (qq--) {
+    cin >> q;
+    ans.pb(oset.order_of_key(qu[q].top()) + 1);
+    auto it = oset.find(qu[q].top());
+    oset.erase(it);
+    qu[q].pop();
+    qu[q].push(id);
+    oset.insert(id--);
+  }
+  for (int &x : ans) cout << x << ' ';
+  cout << endl;
+}
 
 int main() {
   ios::sync_with_stdio(0);
   cin.tie(0);
-  int t;
-  cin >> t;
-  while (t--) {
-    solve();
-  }
+  solve();
   return 0;
 }
 /*

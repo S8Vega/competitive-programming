@@ -16,16 +16,29 @@ void dbg_out(Head H, Tail... T) {
   dbg_out(T...);
 }
 
-void solve() {}
+int n, k;
+string s;
+int c[26];
+char pre;
+
+void solve() {
+  cin >> n >> k;
+  pre = 'a';
+  cout << pre;
+  c[pre - 'a']++;
+  for (int i = 1; i < n; i++) {
+    char now = c[pre - 'a'] % k + 'a';
+    cout << now;
+    pre = now;
+    c[pre - 'a']++;
+  }
+  cout << endl;
+}
 
 int main() {
   ios::sync_with_stdio(0);
   cin.tie(0);
-  int t;
-  cin >> t;
-  while (t--) {
-    solve();
-  }
+  solve();
   return 0;
 }
 /*
