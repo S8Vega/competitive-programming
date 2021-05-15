@@ -17,7 +17,36 @@ void dbg_out(Head H, Tail... T) {
   dbg_out(T...);
 }
 
-void solve() {}
+void f(int n, string& a, string& b, char c) {
+  string s = "";
+  int i = 0, j = 0;
+  while (i < n && j < n) {
+    if (a[i] != c)
+      s.pb(a[i++]);
+    else if (b[j] != c)
+      s.pb(b[j++]);
+    else
+      s.pb(a[i++]), ++j;
+  }
+  while (i < n) s.pb(a[i++]);
+  while (j < n) s.pb(b[j++]);
+  cout << s << endl;
+}
+
+void solve() {
+  int n;
+  cin >> n;
+  vector<int> z[2];
+  string s[3];
+  for (int i = 0; i < 3; ++i) {
+    cin >> s[i];
+    int bal = 0;
+    for (char& c : s[i]) bal += (c == '1' ? 1 : -1);
+    z[(bal >= 0)].pb(i);
+  }
+  int e = (z[1].size() > 1);
+  f(2 * n, s[z[e][0]], s[z[e][1]], char(e + '0'));
+}
 
 int main() {
   ios::sync_with_stdio(0);
