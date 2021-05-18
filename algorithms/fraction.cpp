@@ -14,42 +14,46 @@ struct Fraction {
   }
 
   Fraction(double input) {
-    double integral = floor(input);
-    double frac = input - integral;
-
-    const ll precision = 1000000000;  // This is the accuracy.
-
-    ll gcd_ = gcd(round(frac * precision), precision);
-
-    d = precision / gcd_;
-    u = round(frac * precision) / gcd_;
+    ll integral = (ll)floor(input);
+    double frac = input - double(integral);
+    ll precision = 1e9;
+    ll gcd = __gcd(ll(round(frac * double(precision))), precision);
+    d = precision / gcd;
+    u = ll(round(frac * double(precision)) / double(gcd));
+    u += integral * d;
+    gcd = __gcd(u, d);
+    u /= gcd, d /= gcd;
   }
 
-  void print() { cout << u << '/' << d << endl; }
+  string tostring() { return to_string(u) + " / " + to_string(d); }
 
-  Fraction operator+(const Fraction &f) const {
-    return Fraction(u * f.d + d * f.u, d * f.d);
+  double todouble() { return double(u) / double(d); }
+
+  void print() { cout << tostring() << endl; }
+
+  Fraction operator+(const Fraction &fr) const {
+    return Fraction(u * fr.d + d * fr.u, d * fr.d);
   }
 
-  Fraction operator-(const Fraction &f) const {
-    return Fraction(u * f.d - d * f.u, d * f.d);
+  Fraction operator-(const Fraction &fr) const {
+    return Fraction(u * fr.d - d * fr.u, d * fr.d);
   }
 
-  Fraction operator*(const Fraction &f) const {
-    return Fraction(u * f.u, d * f.d);
+  Fraction operator*(const Fraction &fr) const {
+    return Fraction(u * fr.u, d * fr.d);
   }
 
-  Fraction operator/(const Fraction &f) const {
-    return Fraction(u * f.d, d * f.u);
+  Fraction operator/(const Fraction &fr) const {
+    return Fraction(u * fr.d, d * fr.u);
   }
 
-  Fraction operator<(const Fraction &f) const { return u * f.d < d * f.u; }
+  bool operator<(const Fraction &fr) const { return u * fr.d < d * fr.u; }
 
-  Fraction operator<=(const Fraction &f) const { return u * f.d <= d * f.u; }
+  bool operator<=(const Fraction &fr) const { return u * fr.d <= d * fr.u; }
 
-  Fraction operator>(const Fraction &f) const { return u * f.d > d * f.u; }
+  bool operator>(const Fraction &fr) const { return u * fr.d > d * fr.u; }
 
-  Fraction operator>=(const Fraction &f) const { return u * f.d >= d * f.u; }
+  bool operator>=(const Fraction &fr) const { return u * fr.d >= d * fr.u; }
 
-  Fraction operator==(const Fraction &f) const { return u * f.d == d * f.u; }
+  bool operator==(const Fraction &fr) const { return u * fr.d == d * fr.u; }
 };
