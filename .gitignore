@@ -4,3 +4,8 @@ problems/**/.cph/
 algorithms/test.*
 algorithms/main
 .vscode/
+*.class
+
+*.iml
+
+.idea/
