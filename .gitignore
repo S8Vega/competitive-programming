@@ -9,3 +9,5 @@ algorithms/main
 *.iml
 
 .idea/
+
+out/
