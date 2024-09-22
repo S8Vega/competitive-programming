@@ -18,6 +18,32 @@ Siéntete libre de contribuir al repositorio de la siguiente manera:
 
 3. **Mejorar el template C++**: Si tienes sugerencias para mejorar el template en la carpeta `algorithms`, tus contribuciones son bienvenidas.
 
+## C++ Compilation and Execution Commands
+
+Para compilar y ejecutar los algoritmos y soluciones de problemas, puedes utilizar los siguientes comandos:
+
+Ejecucion de un archivo:
+```bash
+g++ -pthread -Wall -Wshadow -std=c++17 -o main main.cpp && ./main < main.txt
+freopen("input.in", "r" , stdin);
+freopen("output.out", "w", stdout);
+```
+
+Ejecucion de un archivo con code-runner.executorMap en VSCode:
+```bash
+cd $dir && g++ -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra -o main $fileName && main < $fileNameWithoutExt.txt
+```
+
+Ejecucion de un archivo con testcases en Linux:
+```bash
+g++ -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra -D_GLIBCXX_DEBUG -o main main.cpp && for x in main*.txt; do echo ====================$x=================; time -p ./main <$x; echo ===========================================; done
+```
+
+Ejecucion de un archivo en windows powershell:
+```bash
+cd $dir && g++ -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra -o main $fileName && $testcase = '>>> name'; foreach ($file in Get-ChildItem $fileNameWithoutExt*.txt) { echo $testcase.Replace('name', $file.Name); Get-Content $file.Name | ./main; echo ==========================================; }
+```
+
 ## Plataformas de Competición
 
 - [Codeforces](https://codeforces.com/)
