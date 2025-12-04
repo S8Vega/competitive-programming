@@ -41,6 +41,13 @@ g++ -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra
 ====================$x=================; time -p ./main <$x; echo
 ===========================================; done
 
+MacOS command
+g++-15 -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra
+-D_GLIBCXX_DEBUG \"${file}\" -o main && for x in
+${fileBasenameNoExtension}*.txt; do echo
+\"====================$x=================\"; ./main < \"$x\"; echo
+\"===========================================\"; done && rm -rf main main.dSYM
+
 Powershell command
 cd $dir && g++ -DLOCAL -std=c++17 -g -O2 -Wconversion -Wshadow -Wall -Wextra -o
 main $fileName && $testcase = '>>> name'; foreach ($file in Get-ChildItem
